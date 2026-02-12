@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: investment-calculator
+spec:
+  selector:
+    matchLabels:
+      app: investment-calculator
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: investment-calculator
+    spec:
+      containers:
+      - name: investment-calculator
+        image: investment-calculator:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: investment-calculator
+spec:
+  selector:
+    app: investment-calculator
+  ports:
+    - protocol: TCP
+      port: 8080

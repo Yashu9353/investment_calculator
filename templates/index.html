@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Forecaster | AI-Powered Grow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Chart.js for visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="background-glow"></div>
+
+    <main class="dashboard">
+        <header>
+            <h1>Investment Forecaster</h1>
+            <p> Visualize your financial future with AI-precision data.</p>
+        </header>
+
+        <div class="grid-container">
+            <!-- Left Panel: Inputs -->
+            <section class="input-panel glass-card">
+                <h2>Parameters</h2>
+
+                <div class="input-group">
+                    <label for="initialAmount">Initial Investment (₹)</label>
+                    <input type="number" id="initialAmount" value="5000" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="monthlyContribution">Monthly Contribution (₹)</label>
+                    <input type="range" id="monthlyContributionSlider" min="0" max="5000" step="50" value="200">
+                    <input type="number" id="monthlyContribution" value="200" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="interestRate">Annual Return (%)</label>
+                    <input type="range" id="interestRateSlider" min="1" max="15" step="0.1" value="7.0">
+                    <span class="value-display" id="interestRateDisplay">7.0%</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="years">Duration (Years)</label>
+                    <input type="range" id="yearsSlider" min="1" max="40" step="1" value="10">
+                    <span class="value-display" id="yearsDisplay">10 Years</span>
+                </div>
+
+                <button id="calculateBtn" class="primary-btn">Update Projection</button>
+            </section>
+
+            <!-- Right Panel: Visualization -->
+            <section class="visual-panel glass-card">
+                <canvas id="growthChart"></canvas>
+            </section>
+
+            <!-- Bottom Panel: Summary Metrics -->
+            <section class="summary-panel glass-card">
+                <div class="metric">
+                    <h3>Total Invested</h3>
+                    <p id="totalInvested">$0</p>
+                </div>
+                <div class="metric">
+                    <h3>Interest Earned</h3>
+                    <p id="totalInterest" class="highlight-green">$0</p>
+                </div>
+                <div class="metric">
+                    <h3>Final Balance</h3>
+                    <p id="finalBalance" class="highlight-blue">$0</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
